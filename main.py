@@ -3,14 +3,9 @@ import os
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
-from flask import Flask, request, redirect
 import bot_commands
-from spotipy import Spotify
-from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
-
-import threading
-
 import bot_spotify
+from bot_database import init_db
 
 # Token Entry
 load_dotenv()
@@ -18,6 +13,7 @@ TOKEN: Final[str] = os.getenv('DISCORD_TOKEN')
 ID: Final[str] = os.getenv('SPOTIFY_CLIENT_ID')
 SECRET: Final[str] = os.getenv('SPOTIFY_CLIENT_SECRET')
 URI: Final[str] = os.getenv('SPOTIFY_REDIRECT_URI')
+
 
 # Bot Intent Setup
 intents = discord.Intents.default()
@@ -37,6 +33,7 @@ async def on_ready():
     # Set the bots activity
     activity = discord.Activity(type=discord.ActivityType.listening, name=">help")
     await bot.change_presence(status=discord.Status.online, activity=activity)
+    await init_db()
     print("The Discord Bot is Now Ready!")
 
 

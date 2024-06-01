@@ -3,3 +3,4 @@ spotipy==2.24.0
 yt_dlp==2024.5.27
 flask==3.0.3
 python-dotenv==1.0.1
+aiomysql==0.2.0
