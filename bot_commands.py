@@ -4,7 +4,7 @@ import os
 from spotipy import Spotify
 
 
-def setup(bot):
+def command_setup(bot):
     # Command that responds with a simple message
     @bot.command(help="Responds with a greeting message.\nUsage: >hello")
     async def hello(ctx):
